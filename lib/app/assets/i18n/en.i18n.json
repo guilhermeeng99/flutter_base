@@ -1,0 +1,56 @@
+{
+  "home": {
+    "title": "FlutterBase",
+    "learningPath": "Learning Path",
+    "dailyChallenge": "Daily Challenge",
+    "dailyChallengeSubtitle": "Test your Flutter knowledge!"
+  },
+  "quiz": {
+    "questionOf": "Question $current of $total",
+    "checkAnswer": "Check Answer",
+    "continue_": "Continue",
+    "correct": "Correct!",
+    "incorrect": "Incorrect",
+    "correctAnswer": "Correct answer: $answer",
+    "levelComplete": "Level Complete!",
+    "backToHome": "Back to Home",
+    "noQuestions": "No questions available for this level.",
+    "error": "Something went wrong.",
+    "correctCount": "$correct/$total correct"
+  },
+  "progress": {
+    "title": "My Progress",
+    "level": "Level $level",
+    "questionsAnswered": "$count questions answered",
+    "statistics": "Statistics",
+    "accuracy": "Accuracy",
+    "correct": "Correct",
+    "totalXp": "Total XP",
+    "levelsDone": "Levels Done",
+    "dayStreak": "$count day streak",
+    "best": "Best: $count days"
+  },
+  "levels": {
+    "beginner": "Beginner",
+    "beginnerDesc": "Widgets & Basics",
+    "intermediate": "Intermediate",
+    "intermediateDesc": "Layout & State",
+    "advanced": "Advanced",
+    "advancedDesc": "Architecture & Performance"
+  },
+  "common": {
+    "xp": "$count XP",
+    "xpEarned": "+$count XP",
+    "loading": "Loading...",
+    "pageNotFound": "Page not found"
+  },
+  "landing": {
+    "title": "FlutterBase",
+    "subtitle": "Learn Flutter the fun way",
+    "description": "Master Flutter through interactive quizzes, challenges, and hands-on exercises. Level up your skills one question at a time.",
+    "startButton": "Start Learning",
+    "featureQuizzes": "Interactive Quizzes",
+    "featureProgress": "Track Progress",
+    "featureLevels": "Multiple Levels"
+  }
+}
