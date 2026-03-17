@@ -1,4 +1,6 @@
 import 'package:flutter_base/features/quiz/data/models/question_model.dart';
+import 'package:flutter_base/features/quiz/domain/entities/question_category.dart';
+import 'package:flutter_base/features/quiz/domain/entities/question_type.dart';
 
 class QuizLocalDatasource {
   List<QuestionModel> getQuestionsByLevel(int level) {
@@ -17,7 +19,7 @@ class QuizLocalDatasource {
     const QuestionModel(
       id: 'q1_001',
       level: 1,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'What is a Widget?',
       description:
           'In Flutter, what is the fundamental building block of the UI?',
@@ -26,12 +28,12 @@ class QuizLocalDatasource {
       explanation:
           'In Flutter, everything is a Widget. Widgets describe what their '
           'view should look like given their current configuration and state.',
-      category: 'widgets',
+      category: QuestionCategory.widgets,
     ),
     const QuestionModel(
       id: 'q1_002',
       level: 1,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'StatelessWidget vs StatefulWidget',
       description:
           'Which widget should you use when the UI does NOT change over time?',
@@ -45,12 +47,12 @@ class QuizLocalDatasource {
       explanation:
           'StatelessWidget is used for parts of the UI that do not change '
           'dynamically. It has no mutable state.',
-      category: 'widgets',
+      category: QuestionCategory.widgets,
     ),
     const QuestionModel(
       id: 'q1_003',
       level: 1,
-      type: 'fill_in_the_blank',
+      type: QuestionType.fillInTheBlank,
       title: 'Complete the code',
       description: 'Fill in the blank: class MyWidget extends _____ { }',
       options: [
@@ -62,12 +64,12 @@ class QuizLocalDatasource {
       correctAnswerIndex: 0,
       explanation:
           'To create a widget with no mutable state, extend StatelessWidget.',
-      category: 'widgets',
+      category: QuestionCategory.widgets,
     ),
     const QuestionModel(
       id: 'q1_004',
       level: 1,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'The build() method',
       description: 'What does the build() method return?',
       options: ['Widget', 'void', 'State', 'BuildContext'],
@@ -75,12 +77,12 @@ class QuizLocalDatasource {
       explanation:
           'The build() method returns a Widget that describes the part of '
           'the user interface represented by this widget.',
-      category: 'widgets',
+      category: QuestionCategory.widgets,
     ),
     const QuestionModel(
       id: 'q1_005',
       level: 1,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'Hot Reload',
       description: 'What does Hot Reload do in Flutter?',
       options: [
@@ -93,14 +95,14 @@ class QuizLocalDatasource {
       explanation:
           'Hot Reload injects updated source code into the running Dart '
           'VM and rebuilds the widget tree, preserving the app state.',
-      category: 'basics',
+      category: QuestionCategory.basics,
     ),
 
     // Level 2 - Intermediate: Layout & State
     const QuestionModel(
       id: 'q2_001',
       level: 2,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'Row and Column',
       description: 'Which widget arranges its children in a horizontal line?',
       options: ['Row', 'Column', 'Stack', 'Wrap'],
@@ -108,12 +110,12 @@ class QuizLocalDatasource {
       explanation:
           'Row arranges its children horizontally. Column arranges them '
           'vertically. Both use Flex layout.',
-      category: 'layout',
+      category: QuestionCategory.layout,
     ),
     const QuestionModel(
       id: 'q2_002',
       level: 2,
-      type: 'code_based',
+      type: QuestionType.codeBased,
       title: 'Expanded Widget',
       description: 'What does the Expanded widget do inside a Row or Column?',
       options: [
@@ -133,12 +135,12 @@ Row(
     Text('World'),
   ],
 )''',
-      category: 'layout',
+      category: QuestionCategory.layout,
     ),
     const QuestionModel(
       id: 'q2_003',
       level: 2,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'setState()',
       description: 'What happens when you call setState() in a StatefulWidget?',
       options: [
@@ -151,12 +153,12 @@ Row(
       explanation:
           'setState() notifies the framework that the internal state has '
           'changed, which schedules a call to the build() method.',
-      category: 'state_management',
+      category: QuestionCategory.stateManagement,
     ),
     const QuestionModel(
       id: 'q2_004',
       level: 2,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'Keys in Flutter',
       description: 'When should you use a Key in Flutter?',
       options: [
@@ -169,12 +171,12 @@ Row(
       explanation:
           'Keys help Flutter identify which widgets have changed, been '
           'added, or removed, especially in lists and animations.',
-      category: 'widgets',
+      category: QuestionCategory.widgets,
     ),
     const QuestionModel(
       id: 'q2_005',
       level: 2,
-      type: 'fill_in_the_blank',
+      type: QuestionType.fillInTheBlank,
       title: 'Navigator push',
       description:
           'Fill in the blank: Navigator.of(context)._____( MaterialPageRoute(...) )',
@@ -182,14 +184,14 @@ Row(
       correctAnswerIndex: 0,
       explanation:
           'Navigator.push() adds a route on top of the navigation stack.',
-      category: 'navigation',
+      category: QuestionCategory.navigation,
     ),
 
     // Level 3 - Advanced: Architecture & Performance
     const QuestionModel(
       id: 'q3_001',
       level: 3,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'InheritedWidget',
       description: 'What is the primary purpose of InheritedWidget?',
       options: [
@@ -203,12 +205,12 @@ Row(
           'InheritedWidget is a base class for widgets that efficiently '
           'propagate information down the tree. Provider and many state '
           'management solutions build on top of it.',
-      category: 'architecture',
+      category: QuestionCategory.architecture,
     ),
     const QuestionModel(
       id: 'q3_002',
       level: 3,
-      type: 'code_based',
+      type: QuestionType.codeBased,
       title: 'const Constructors',
       description:
           'Why is using const constructors beneficial for performance?',
@@ -223,12 +225,12 @@ Row(
           'const constructors create compile-time constants. Flutter can '
           "skip rebuilding these widgets because it knows they haven't changed.",
       codeSnippet: 'const Text("Hello World")',
-      category: 'performance',
+      category: QuestionCategory.performance,
     ),
     const QuestionModel(
       id: 'q3_003',
       level: 3,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'Repository Pattern',
       description: 'What is the main benefit of the Repository Pattern?',
       options: [
@@ -242,12 +244,12 @@ Row(
           'The Repository Pattern provides an abstraction layer between '
           'data sources and business logic, making it easy to swap '
           'implementations and test in isolation.',
-      category: 'architecture',
+      category: QuestionCategory.architecture,
     ),
     const QuestionModel(
       id: 'q3_004',
       level: 3,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'Widget Lifecycle',
       description:
           'In a StatefulWidget, which method is called only once when '
@@ -257,12 +259,12 @@ Row(
       explanation:
           'initState() is called exactly once when the State object is '
           'first created and inserted into the widget tree.',
-      category: 'widgets',
+      category: QuestionCategory.widgets,
     ),
     const QuestionModel(
       id: 'q3_005',
       level: 3,
-      type: 'multiple_choice',
+      type: QuestionType.multipleChoice,
       title: 'Isolates',
       description: 'What are Dart Isolates used for?',
       options: [
@@ -276,7 +278,7 @@ Row(
           'Dart Isolates allow you to run code on separate threads. '
           "Unlike traditional threads, Isolates don't share memory and "
           'communicate via message passing.',
-      category: 'performance',
+      category: QuestionCategory.performance,
     ),
   ];
 }

@@ -1,3 +1,4 @@
+import 'package:flutter_base/features/quiz/domain/entities/question_category.dart';
 import 'package:flutter_base/features/quiz/domain/entities/question_type.dart';
 
 class Question {
@@ -11,7 +12,7 @@ class Question {
     required this.correctAnswerIndex,
     required this.explanation,
     this.codeSnippet,
-    this.category = '',
+    this.category = QuestionCategory.general,
   });
 
   final String id;
@@ -23,7 +24,7 @@ class Question {
   final int correctAnswerIndex;
   final String explanation;
   final String? codeSnippet;
-  final String category;
+  final QuestionCategory category;
 
   String get correctAnswer => options[correctAnswerIndex];
 }

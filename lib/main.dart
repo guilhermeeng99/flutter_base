@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/app/app.dart';
-import 'package:flutter_base/app/di/app_bindings.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  AppBindings().dependencies();
-  runApp(const App());
+  runApp(const ProviderScope(child: App()));
 }

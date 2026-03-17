@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$QuestionModel {
 
- String get id; int get level; String get type; String get title; String get description; List<String> get options; int get correctAnswerIndex; String get explanation; String? get codeSnippet; String get category;
+ String get id; int get level; QuestionType get type; String get title; String get description; List<String> get options; int get correctAnswerIndex; String get explanation; String? get codeSnippet; QuestionCategory get category;
 /// Create a copy of QuestionModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $QuestionModelCopyWith<$Res>  {
   factory $QuestionModelCopyWith(QuestionModel value, $Res Function(QuestionModel) _then) = _$QuestionModelCopyWithImpl;
 @useResult
 $Res call({
- String id, int level, String type, String title, String description, List<String> options, int correctAnswerIndex, String explanation, String? codeSnippet, String category
+ String id, int level, QuestionType type, String title, String description, List<String> options, int correctAnswerIndex, String explanation, String? codeSnippet, QuestionCategory category
 });
 
 
@@ -70,14 +70,14 @@ class _$QuestionModelCopyWithImpl<$Res>
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
 as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as QuestionType,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,options: null == options ? _self.options : options // ignore: cast_nullable_to_non_nullable
 as List<String>,correctAnswerIndex: null == correctAnswerIndex ? _self.correctAnswerIndex : correctAnswerIndex // ignore: cast_nullable_to_non_nullable
 as int,explanation: null == explanation ? _self.explanation : explanation // ignore: cast_nullable_to_non_nullable
 as String,codeSnippet: freezed == codeSnippet ? _self.codeSnippet : codeSnippet // ignore: cast_nullable_to_non_nullable
 as String?,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as String,
+as QuestionCategory,
   ));
 }
 
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  int level,  String type,  String title,  String description,  List<String> options,  int correctAnswerIndex,  String explanation,  String? codeSnippet,  String category)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String id,  int level,  QuestionType type,  String title,  String description,  List<String> options,  int correctAnswerIndex,  String explanation,  String? codeSnippet,  QuestionCategory category)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _QuestionModel() when $default != null:
 return $default(_that.id,_that.level,_that.type,_that.title,_that.description,_that.options,_that.correctAnswerIndex,_that.explanation,_that.codeSnippet,_that.category);case _:
@@ -183,7 +183,7 @@ return $default(_that.id,_that.level,_that.type,_that.title,_that.description,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  int level,  String type,  String title,  String description,  List<String> options,  int correctAnswerIndex,  String explanation,  String? codeSnippet,  String category)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String id,  int level,  QuestionType type,  String title,  String description,  List<String> options,  int correctAnswerIndex,  String explanation,  String? codeSnippet,  QuestionCategory category)  $default,) {final _that = this;
 switch (_that) {
 case _QuestionModel():
 return $default(_that.id,_that.level,_that.type,_that.title,_that.description,_that.options,_that.correctAnswerIndex,_that.explanation,_that.codeSnippet,_that.category);case _:
@@ -203,7 +203,7 @@ return $default(_that.id,_that.level,_that.type,_that.title,_that.description,_t
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  int level,  String type,  String title,  String description,  List<String> options,  int correctAnswerIndex,  String explanation,  String? codeSnippet,  String category)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String id,  int level,  QuestionType type,  String title,  String description,  List<String> options,  int correctAnswerIndex,  String explanation,  String? codeSnippet,  QuestionCategory category)?  $default,) {final _that = this;
 switch (_that) {
 case _QuestionModel() when $default != null:
 return $default(_that.id,_that.level,_that.type,_that.title,_that.description,_that.options,_that.correctAnswerIndex,_that.explanation,_that.codeSnippet,_that.category);case _:
@@ -218,12 +218,12 @@ return $default(_that.id,_that.level,_that.type,_that.title,_that.description,_t
 @JsonSerializable()
 
 class _QuestionModel implements QuestionModel {
-  const _QuestionModel({required this.id, required this.level, required this.type, required this.title, required this.description, required final  List<String> options, required this.correctAnswerIndex, required this.explanation, this.codeSnippet, this.category = ''}): _options = options;
+  const _QuestionModel({required this.id, required this.level, required this.type, required this.title, required this.description, required final  List<String> options, required this.correctAnswerIndex, required this.explanation, this.codeSnippet, this.category = QuestionCategory.general}): _options = options;
   factory _QuestionModel.fromJson(Map<String, dynamic> json) => _$QuestionModelFromJson(json);
 
 @override final  String id;
 @override final  int level;
-@override final  String type;
+@override final  QuestionType type;
 @override final  String title;
 @override final  String description;
  final  List<String> _options;
@@ -236,7 +236,7 @@ class _QuestionModel implements QuestionModel {
 @override final  int correctAnswerIndex;
 @override final  String explanation;
 @override final  String? codeSnippet;
-@override@JsonKey() final  String category;
+@override@JsonKey() final  QuestionCategory category;
 
 /// Create a copy of QuestionModel
 /// with the given fields replaced by the non-null parameter values.
@@ -271,7 +271,7 @@ abstract mixin class _$QuestionModelCopyWith<$Res> implements $QuestionModelCopy
   factory _$QuestionModelCopyWith(_QuestionModel value, $Res Function(_QuestionModel) _then) = __$QuestionModelCopyWithImpl;
 @override @useResult
 $Res call({
- String id, int level, String type, String title, String description, List<String> options, int correctAnswerIndex, String explanation, String? codeSnippet, String category
+ String id, int level, QuestionType type, String title, String description, List<String> options, int correctAnswerIndex, String explanation, String? codeSnippet, QuestionCategory category
 });
 
 
@@ -293,14 +293,14 @@ class __$QuestionModelCopyWithImpl<$Res>
 id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as String,level: null == level ? _self.level : level // ignore: cast_nullable_to_non_nullable
 as int,type: null == type ? _self.type : type // ignore: cast_nullable_to_non_nullable
-as String,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as QuestionType,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
 as String,description: null == description ? _self.description : description // ignore: cast_nullable_to_non_nullable
 as String,options: null == options ? _self._options : options // ignore: cast_nullable_to_non_nullable
 as List<String>,correctAnswerIndex: null == correctAnswerIndex ? _self.correctAnswerIndex : correctAnswerIndex // ignore: cast_nullable_to_non_nullable
 as int,explanation: null == explanation ? _self.explanation : explanation // ignore: cast_nullable_to_non_nullable
 as String,codeSnippet: freezed == codeSnippet ? _self.codeSnippet : codeSnippet // ignore: cast_nullable_to_non_nullable
 as String?,category: null == category ? _self.category : category // ignore: cast_nullable_to_non_nullable
-as String,
+as QuestionCategory,
   ));
 }
 

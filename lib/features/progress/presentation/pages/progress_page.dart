@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/app/routes/app_routes.dart';
 import 'package:flutter_base/app/theme/app_colors.dart';
-import 'package:flutter_base/features/progress/presentation/controllers/progress_controller.dart';
+import 'package:flutter_base/features/progress/presentation/providers/progress_providers.dart';
 import 'package:flutter_base/features/progress/presentation/widgets/level_badge_widget.dart';
 import 'package:flutter_base/features/progress/presentation/widgets/streak_widget.dart';
 import 'package:flutter_base/features/progress/presentation/widgets/xp_bar_widget.dart';
 import 'package:flutter_base/gen/i18n/strings.g.dart';
-import 'package:get/get.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class ProgressPage extends GetView<ProgressController> {
+class ProgressPage extends ConsumerWidget {
   const ProgressPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final asyncProgress = ref.watch(progressProvider);
+
     return Scaffold(
-      appBar: AppBar(title: Text(context.t.progress.title)),
-      body: Obx(() {
-        if (controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        final p = controller.progress.value;
-
-        return SingleChildScrollView(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_rounded),
+          onPressed: () {
+            if (context.canPop()) {
+              context.pop();
+              return;
+            }
+            context.go(AppRoutes.home);
+          },
+        ),
+        title: Text(context.t.progress.title),
+      ),
+      body: asyncProgress.when(
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (e, _) => Center(child: Text('Error: $e')),
+        data: (p) => SingleChildScrollView(
           padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -122,8 +134,8 @@ class ProgressPage extends GetView<ProgressController> {
               ),
             ],
           ),
-        );
-      }),
+        ),
+      ),
     );
   }
 }

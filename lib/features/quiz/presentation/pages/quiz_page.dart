@@ -1,165 +1,178 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_base/app/routes/app_routes.dart';
 import 'package:flutter_base/app/theme/app_colors.dart';
 import 'package:flutter_base/features/quiz/domain/entities/question_type.dart';
 import 'package:flutter_base/features/quiz/domain/entities/quiz_session.dart';
-import 'package:flutter_base/features/quiz/presentation/controllers/quiz_controller.dart';
+import 'package:flutter_base/features/quiz/presentation/providers/quiz_notifier.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/answer_feedback_widget.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/code_question_widget.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/fill_blank_widget.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/multiple_choice_widget.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/question_card.dart';
 import 'package:flutter_base/gen/i18n/strings.g.dart';
-import 'package:get/get.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class QuizPage extends StatefulWidget {
+class QuizPage extends ConsumerStatefulWidget {
   const QuizPage({required this.level, super.key});
   final int level;
 
   @override
-  State<QuizPage> createState() => _QuizPageState();
+  ConsumerState<QuizPage> createState() => _QuizPageState();
 }
 
-class _QuizPageState extends State<QuizPage> {
-  late final QuizController _controller;
+class _QuizPageState extends ConsumerState<QuizPage> {
+  void _closeQuiz(BuildContext context) {
+    if (context.canPop()) {
+      context.pop();
+      return;
+    }
+    context.go(AppRoutes.home);
+  }
 
   @override
   void initState() {
     super.initState();
-    _controller = Get.find<QuizController>();
-    unawaited(_controller.loadQuestions(widget.level));
+    unawaited(
+      Future.microtask(
+        () =>
+            ref.read(quizNotifierProvider.notifier).loadQuestions(widget.level),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final state = ref.watch(quizNotifierProvider);
+    final notifier = ref.read(quizNotifierProvider.notifier);
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           icon: const Icon(Icons.close),
-          onPressed: () => context.go('/home'),
+          onPressed: () => _closeQuiz(context),
         ),
-        title: Obx(
-          () => LinearProgressIndicator(
-            value: _controller.progress,
-            backgroundColor: AppColors.border,
-            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
-            minHeight: 10,
-            borderRadius: BorderRadius.circular(5),
-          ),
+        title: LinearProgressIndicator(
+          value: state.progress,
+          backgroundColor: AppColors.border,
+          valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
+          minHeight: 10,
+          borderRadius: BorderRadius.circular(5),
         ),
       ),
-      body: Obx(() {
-        if (_controller.isLoading.value) {
-          return const Center(child: CircularProgressIndicator());
-        }
-
-        if (_controller.questions.isEmpty) {
-          return Center(
-            child: Text(context.t.quiz.noQuestions),
-          );
-        }
-
-        final session = _controller.session.value;
-        if (session != null && session.isCompleted) {
-          return _QuizCompleteView(session: session, controller: _controller);
-        }
-
-        final question = _controller.currentQuestion;
-        if (question == null) {
-          return Center(child: Text(context.t.quiz.error));
-        }
-
-        return SingleChildScrollView(
-          child: Column(
-            children: [
-              QuestionCard(
-                title: question.title,
-                description: question.description,
-                questionNumber: _controller.currentIndex.value + 1,
-                totalQuestions: _controller.questions.length,
-              ),
-              const SizedBox(height: 8),
-              _buildQuestionTypeWidget(),
-              const SizedBox(height: 16),
-              if (!_controller.isAnswered.value)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: Obx(
-                      () => ElevatedButton(
-                        onPressed: _controller.selectedAnswer.value != null
-                            ? _controller.confirmAnswer
-                            : null,
-                        child: Text(context.t.quiz.checkAnswer),
-                      ),
-                    ),
-                  ),
-                ),
-              if (_controller.isAnswered.value &&
-                  _controller.answerResult.value != null)
-                AnswerFeedbackWidget(
-                  result: _controller.answerResult.value!,
-                  onNext: _controller.nextQuestion,
-                ),
-              const SizedBox(height: 32),
-            ],
-          ),
-        );
-      }),
+      body: _buildBody(context, state, notifier),
     );
   }
 
-  Widget _buildQuestionTypeWidget() {
-    return Obx(() {
-      final q = _controller.currentQuestion!;
-      switch (q.type) {
-        case QuestionType.fillInTheBlank:
-          return FillBlankWidget(
-            options: q.options,
-            selectedIndex: _controller.selectedAnswer.value,
-            correctAnswerIndex: _controller.isAnswered.value
-                ? q.correctAnswerIndex
-                : null,
-            isAnswered: _controller.isAnswered.value,
-            onSelected: _controller.selectAnswer,
-          );
-        case QuestionType.codeBased:
-          return CodeQuestionWidget(
-            codeSnippet: q.codeSnippet ?? '',
-            options: q.options,
-            selectedIndex: _controller.selectedAnswer.value,
-            correctAnswerIndex: _controller.isAnswered.value
-                ? q.correctAnswerIndex
-                : null,
-            isAnswered: _controller.isAnswered.value,
-            onSelected: _controller.selectAnswer,
-          );
-        case QuestionType.multipleChoice:
-          return MultipleChoiceWidget(
-            options: q.options,
-            selectedIndex: _controller.selectedAnswer.value,
-            correctAnswerIndex: _controller.isAnswered.value
-                ? q.correctAnswerIndex
-                : null,
-            isAnswered: _controller.isAnswered.value,
-            onSelected: _controller.selectAnswer,
-          );
-      }
-    });
+  Widget _buildBody(
+    BuildContext context,
+    QuizState state,
+    QuizNotifier notifier,
+  ) {
+    if (state.isLoading) {
+      return const Center(child: CircularProgressIndicator());
+    }
+
+    if (state.questions.isEmpty) {
+      return Center(child: Text(context.t.quiz.noQuestions));
+    }
+
+    final session = state.session;
+    if (session != null && session.isCompleted) {
+      return _QuizCompleteView(session: session, notifier: notifier);
+    }
+
+    final question = state.currentQuestion;
+    if (question == null) {
+      return Center(child: Text(context.t.quiz.error));
+    }
+
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          QuestionCard(
+            title: question.title,
+            description: question.description,
+            questionNumber: state.currentIndex + 1,
+            totalQuestions: state.questions.length,
+          ),
+          const SizedBox(height: 8),
+          _buildQuestionTypeWidget(state, notifier),
+          const SizedBox(height: 16),
+          if (!state.isAnswered)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: state.selectedAnswer != null
+                      ? notifier.confirmAnswer
+                      : null,
+                  child: Text(context.t.quiz.checkAnswer),
+                ),
+              ),
+            ),
+          if (state.isAnswered && state.answerResult != null)
+            AnswerFeedbackWidget(
+              result: state.answerResult!,
+              onNext: notifier.nextQuestion,
+            ),
+          const SizedBox(height: 32),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildQuestionTypeWidget(QuizState state, QuizNotifier notifier) {
+    final q = state.currentQuestion!;
+    switch (q.type) {
+      case QuestionType.fillInTheBlank:
+        return FillBlankWidget(
+          options: q.options,
+          selectedIndex: state.selectedAnswer,
+          correctAnswerIndex: state.isAnswered ? q.correctAnswerIndex : null,
+          isAnswered: state.isAnswered,
+          onSelected: notifier.selectAnswer,
+        );
+      case QuestionType.codeBased:
+        return CodeQuestionWidget(
+          codeSnippet: q.codeSnippet ?? '',
+          options: q.options,
+          selectedIndex: state.selectedAnswer,
+          correctAnswerIndex: state.isAnswered ? q.correctAnswerIndex : null,
+          isAnswered: state.isAnswered,
+          onSelected: notifier.selectAnswer,
+        );
+      case QuestionType.multipleChoice:
+        return MultipleChoiceWidget(
+          options: q.options,
+          selectedIndex: state.selectedAnswer,
+          correctAnswerIndex: state.isAnswered ? q.correctAnswerIndex : null,
+          isAnswered: state.isAnswered,
+          onSelected: notifier.selectAnswer,
+        );
+    }
   }
 }
 
 class _QuizCompleteView extends StatelessWidget {
   const _QuizCompleteView({
     required this.session,
-    required this.controller,
+    required this.notifier,
   });
 
   final QuizSession session;
-  final QuizController controller;
+  final QuizNotifier notifier;
+
+  void _finishQuiz(BuildContext context) {
+    if (context.canPop()) {
+      context.pop();
+      return;
+    }
+    context.go(AppRoutes.home);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -210,7 +223,7 @@ class _QuizCompleteView extends StatelessWidget {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () => context.go('/home'),
+                onPressed: () => _finishQuiz(context),
                 child: Text(context.t.quiz.backToHome),
               ),
             ),

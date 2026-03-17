@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_base/app/routes/app_routes.dart';
 import 'package:flutter_base/app/theme/app_colors.dart';
 import 'package:flutter_base/gen/i18n/strings.g.dart';
 import 'package:go_router/go_router.dart';
@@ -103,7 +104,7 @@ class LandingPage extends StatelessWidget {
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
-                  onPressed: () => context.go('/home'),
+                  onPressed: () => context.go(AppRoutes.home),
                   style: ElevatedButton.styleFrom(
                     textStyle: const TextStyle(
                       fontSize: 18,

@@ -1,4 +1,5 @@
 import 'package:flutter_base/features/quiz/domain/entities/question.dart';
+import 'package:flutter_base/features/quiz/domain/entities/question_category.dart';
 import 'package:flutter_base/features/quiz/domain/entities/question_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -10,14 +11,14 @@ abstract class QuestionModel with _$QuestionModel {
   const factory QuestionModel({
     required String id,
     required int level,
-    required String type,
+    required QuestionType type,
     required String title,
     required String description,
     required List<String> options,
     required int correctAnswerIndex,
     required String explanation,
     String? codeSnippet,
-    @Default('') String category,
+    @Default(QuestionCategory.general) QuestionCategory category,
   }) = _QuestionModel;
 
   factory QuestionModel.fromJson(Map<String, dynamic> json) =>
@@ -29,7 +30,7 @@ extension QuestionModelMapper on QuestionModel {
     return Question(
       id: id,
       level: level,
-      type: _parseQuestionType(type),
+      type: type,
       title: title,
       description: description,
       options: options,
@@ -38,14 +39,6 @@ extension QuestionModelMapper on QuestionModel {
       codeSnippet: codeSnippet,
       category: category,
     );
-  }
-
-  static QuestionType _parseQuestionType(String type) {
-    return switch (type) {
-      'fill_in_the_blank' => QuestionType.fillInTheBlank,
-      'code_based' => QuestionType.codeBased,
-      _ => QuestionType.multipleChoice,
-    };
   }
 }
 
@@ -54,7 +47,7 @@ extension QuestionToModel on Question {
     return QuestionModel(
       id: id,
       level: level,
-      type: _typeToString(type),
+      type: type,
       title: title,
       description: description,
       options: options,
@@ -63,13 +56,5 @@ extension QuestionToModel on Question {
       codeSnippet: codeSnippet,
       category: category,
     );
-  }
-
-  static String _typeToString(QuestionType type) {
-    return switch (type) {
-      QuestionType.multipleChoice => 'multiple_choice',
-      QuestionType.fillInTheBlank => 'fill_in_the_blank',
-      QuestionType.codeBased => 'code_based',
-    };
   }
 }
