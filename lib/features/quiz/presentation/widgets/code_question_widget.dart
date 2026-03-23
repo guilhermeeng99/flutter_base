@@ -22,6 +22,7 @@ class CodeQuestionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -52,19 +53,19 @@ class CodeQuestionWidget extends StatelessWidget {
 
             Color borderColor;
             if (isCorrect) {
-              borderColor = AppColors.success;
+              borderColor = colors.success;
             } else if (isWrong) {
-              borderColor = AppColors.error;
+              borderColor = colors.error;
             } else if (isSelected) {
-              borderColor = AppColors.primary;
+              borderColor = colors.primary;
             } else {
-              borderColor = AppColors.border;
+              borderColor = colors.border;
             }
 
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
               child: Material(
-                color: AppColors.surface,
+                color: colors.surface,
                 borderRadius: BorderRadius.circular(12),
                 child: InkWell(
                   onTap: isAnswered ? null : () => onSelected(index),
@@ -86,7 +87,7 @@ class CodeQuestionWidget extends StatelessWidget {
                         fontWeight: isSelected
                             ? FontWeight.w700
                             : FontWeight.w500,
-                        color: AppColors.textPrimary,
+                        color: colors.textPrimary,
                       ),
                     ),
                   ),

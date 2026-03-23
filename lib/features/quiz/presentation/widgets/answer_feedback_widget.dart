@@ -15,17 +15,18 @@ class AnswerFeedbackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(20),
       margin: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: result.isCorrect
-            ? AppColors.success.withValues(alpha: 0.1)
-            : AppColors.error.withValues(alpha: 0.1),
+            ? colors.success.withValues(alpha: 0.1)
+            : colors.error.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: result.isCorrect ? AppColors.success : AppColors.error,
+          color: result.isCorrect ? colors.success : colors.error,
           width: 2,
         ),
       ),
@@ -37,7 +38,7 @@ class AnswerFeedbackWidget extends StatelessWidget {
             children: [
               Icon(
                 result.isCorrect ? Icons.check_circle : Icons.cancel,
-                color: result.isCorrect ? AppColors.success : AppColors.error,
+                color: result.isCorrect ? colors.success : colors.error,
                 size: 28,
               ),
               const SizedBox(width: 12),
@@ -48,7 +49,7 @@ class AnswerFeedbackWidget extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w700,
-                  color: result.isCorrect ? AppColors.success : AppColors.error,
+                  color: result.isCorrect ? colors.success : colors.error,
                 ),
               ),
               if (result.isCorrect) ...[
@@ -59,13 +60,13 @@ class AnswerFeedbackWidget extends StatelessWidget {
                     vertical: 4,
                   ),
                   decoration: BoxDecoration(
-                    color: AppColors.xpGold.withValues(alpha: 0.2),
+                    color: colors.xpGold.withValues(alpha: 0.2),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
                     context.t.common.xpEarned(count: result.xpEarned),
-                    style: const TextStyle(
-                      color: AppColors.accentDark,
+                    style: TextStyle(
+                      color: colors.accentDark,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -76,9 +77,9 @@ class AnswerFeedbackWidget extends StatelessWidget {
           const SizedBox(height: 12),
           Text(
             result.explanation,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
-              color: AppColors.textSecondary,
+              color: colors.textSecondary,
               height: 1.5,
             ),
           ),
@@ -86,10 +87,10 @@ class AnswerFeedbackWidget extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               context.t.quiz.correctAnswer(answer: result.correctAnswer),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
-                color: AppColors.success,
+                color: colors.success,
               ),
             ),
           ],

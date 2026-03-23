@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_base/app/routes/app_router.dart';
 import 'package:flutter_base/app/theme/app_theme.dart';
+import 'package:flutter_base/core/constants/app_constants.dart';
 import 'package:flutter_base/gen/i18n/strings.g.dart';
 
 class App extends StatelessWidget {
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
     return TranslationProvider(
       child: Builder(
         builder: (context) => MaterialApp.router(
-          title: 'FlutterBase',
+          title: AppConstants.appName,
           debugShowCheckedModeBanner: false,
           theme: AppTheme.dark,
           routerConfig: appRouter,

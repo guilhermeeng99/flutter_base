@@ -14,21 +14,22 @@ class StreakWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: AppColors.streakFlame.withValues(alpha: 0.1),
+        color: colors.streakFlame.withValues(alpha: 0.1),
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
-          color: AppColors.streakFlame.withValues(alpha: 0.3),
+          color: colors.streakFlame.withValues(alpha: 0.3),
         ),
       ),
       child: Row(
         children: [
-          const Icon(
+          Icon(
             Icons.local_fire_department,
             size: 32,
-            color: AppColors.streakFlame,
+            color: colors.streakFlame,
           ),
           const SizedBox(width: 12),
           Column(
@@ -36,17 +37,17 @@ class StreakWidget extends StatelessWidget {
             children: [
               Text(
                 context.t.progress.dayStreak(count: currentStreak),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.textPrimary,
+                  color: colors.textPrimary,
                 ),
               ),
               Text(
                 context.t.progress.best(count: longestStreak),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 13,
-                  color: AppColors.textSecondary,
+                  color: colors.textSecondary,
                 ),
               ),
             ],

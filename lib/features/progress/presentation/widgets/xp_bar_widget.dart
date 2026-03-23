@@ -14,6 +14,7 @@ class XpBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     final progress = (currentXp % nextLevelXp) / nextLevelXp;
 
     return Column(
@@ -24,22 +25,22 @@ class XpBarWidget extends StatelessWidget {
           children: [
             Row(
               children: [
-                const Icon(Icons.bolt, color: AppColors.xpGold, size: 20),
+                Icon(Icons.bolt, color: colors.xpGold, size: 20),
                 const SizedBox(width: 4),
                 Text(
                   context.t.common.xp(count: currentXp),
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.w700,
-                    color: AppColors.textPrimary,
+                    color: colors.textPrimary,
                   ),
                 ),
               ],
             ),
             Text(
               '${currentXp % nextLevelXp}/$nextLevelXp',
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 12,
-                color: AppColors.textSecondary,
+                color: colors.textSecondary,
               ),
             ),
           ],
@@ -50,8 +51,8 @@ class XpBarWidget extends StatelessWidget {
           child: LinearProgressIndicator(
             value: progress,
             minHeight: 12,
-            backgroundColor: AppColors.border,
-            valueColor: const AlwaysStoppedAnimation<Color>(AppColors.xpGold),
+            backgroundColor: colors.border,
+            valueColor: AlwaysStoppedAnimation<Color>(colors.xpGold),
           ),
         ),
       ],

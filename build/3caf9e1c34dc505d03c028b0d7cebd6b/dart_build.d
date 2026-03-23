@@ -1,1 +1,0 @@
- /home/guiga/Documentos/Projetos/flutter_base/build/3caf9e1c34dc505d03c028b0d7cebd6b/dart_build_result.json:  /home/guiga/Documentos/Projetos/flutter_base/.dart_tool/package_config.json /home/guiga/Documentos/Projetos/flutter_base/pubspec.yaml /home/guiga/development/flutter/bin/cache/dart-sdk/version

@@ -9,7 +9,7 @@
       "dependencies": [
         "cupertino_icons",
         "flutter",
-        "flutter_riverpod",
+        "flutter_bloc",
         "font_awesome_flutter",
         "freezed_annotation",
         "go_router",
@@ -39,7 +39,7 @@
     },
     {
       "name": "slang_build_runner",
-      "version": "4.13.0",
+      "version": "4.14.0",
       "dependencies": [
         "build",
         "dart_style",
@@ -49,7 +49,7 @@
     },
     {
       "name": "json_serializable",
-      "version": "6.13.0",
+      "version": "6.13.1",
       "dependencies": [
         "analyzer",
         "async",
@@ -101,7 +101,7 @@
     },
     {
       "name": "build_runner",
-      "version": "2.12.2",
+      "version": "2.13.1",
       "dependencies": [
         "analyzer",
         "args",
@@ -162,7 +162,7 @@
     },
     {
       "name": "slang_flutter",
-      "version": "4.13.0",
+      "version": "4.14.0",
       "dependencies": [
         "flutter",
         "flutter_localizations",
@@ -171,7 +171,7 @@
     },
     {
       "name": "slang",
-      "version": "4.13.0",
+      "version": "4.14.0",
       "dependencies": [
         "collection",
         "intl",
@@ -187,7 +187,7 @@
     },
     {
       "name": "melos",
-      "version": "7.4.0",
+      "version": "7.4.1",
       "dependencies": [
         "ansi_styles",
         "args",
@@ -217,8 +217,9 @@
     },
     {
       "name": "logger",
-      "version": "2.6.2",
+      "version": "2.7.0",
       "dependencies": [
+        "clock",
         "meta"
       ]
     },
@@ -267,14 +268,12 @@
       ]
     },
     {
-      "name": "flutter_riverpod",
-      "version": "2.6.1",
+      "name": "flutter_bloc",
+      "version": "9.1.1",
       "dependencies": [
-        "collection",
+        "bloc",
         "flutter",
-        "meta",
-        "riverpod",
-        "state_notifier"
+        "provider"
       ]
     },
     {
@@ -321,7 +320,7 @@
     },
     {
       "name": "build",
-      "version": "4.0.4",
+      "version": "4.0.5",
       "dependencies": [
         "analyzer",
         "crypto",
@@ -333,7 +332,7 @@
     },
     {
       "name": "source_helper",
-      "version": "1.3.10",
+      "version": "1.3.11",
       "dependencies": [
         "analyzer",
         "source_gen"
@@ -341,7 +340,7 @@
     },
     {
       "name": "source_gen",
-      "version": "4.2.0",
+      "version": "4.2.2",
       "dependencies": [
         "analyzer",
         "async",
@@ -819,7 +818,7 @@
     },
     {
       "name": "cli_launcher",
-      "version": "0.3.2+1",
+      "version": "0.3.3+1",
       "dependencies": [
         "path",
         "yaml"
@@ -850,20 +849,19 @@
       ]
     },
     {
-      "name": "state_notifier",
-      "version": "1.0.0",
+      "name": "provider",
+      "version": "6.1.5+1",
       "dependencies": [
-        "meta"
+        "collection",
+        "flutter",
+        "nested"
       ]
     },
     {
-      "name": "riverpod",
-      "version": "2.6.1",
+      "name": "bloc",
+      "version": "9.2.0",
       "dependencies": [
-        "collection",
-        "meta",
-        "stack_trace",
-        "state_notifier"
+        "meta"
       ]
     },
     {
@@ -1045,6 +1043,13 @@
       ]
     },
     {
+      "name": "nested",
+      "version": "1.0.0",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
       "name": "vm_service",
       "version": "15.0.2",
       "dependencies": []
@@ -1077,7 +1082,7 @@
     },
     {
       "name": "native_toolchain_c",
-      "version": "0.17.5",
+      "version": "0.17.6",
       "dependencies": [
         "code_assets",
         "glob",

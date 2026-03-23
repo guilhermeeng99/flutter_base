@@ -32,6 +32,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "bloc",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/bloc-9.2.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "boolean_selector",
       "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/boolean_selector-2.1.2",
       "packageUri": "lib/",
@@ -39,7 +45,7 @@
     },
     {
       "name": "build",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/build-4.0.4",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/build-4.0.5",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -57,7 +63,7 @@
     },
     {
       "name": "build_runner",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner-2.12.2",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner-2.13.1",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -93,7 +99,7 @@
     },
     {
       "name": "cli_launcher",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/cli_launcher-0.3.2+1",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/cli_launcher-0.3.3+1",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },
@@ -188,16 +194,16 @@
       "languageVersion": "3.9"
     },
     {
+      "name": "flutter_bloc",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_bloc-9.1.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "flutter_localizations",
       "rootUri": "file:///C:/src/flutter/packages/flutter_localizations",
       "packageUri": "lib/",
       "languageVersion": "3.9"
-    },
-    {
-      "name": "flutter_riverpod",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_riverpod-2.6.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
     },
     {
       "name": "flutter_test",
@@ -297,7 +303,7 @@
     },
     {
       "name": "json_serializable",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/json_serializable-6.13.0",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/json_serializable-6.13.1",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -321,7 +327,7 @@
     },
     {
       "name": "logger",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/logger-2.6.2",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/logger-2.7.0",
       "packageUri": "lib/",
       "languageVersion": "2.17"
     },
@@ -345,7 +351,7 @@
     },
     {
       "name": "melos",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/melos-7.4.0",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/melos-7.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -369,9 +375,15 @@
     },
     {
       "name": "native_toolchain_c",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/native_toolchain_c-0.17.5",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/native_toolchain_c-0.17.6",
       "packageUri": "lib/",
       "languageVersion": "3.10"
+    },
+    {
+      "name": "nested",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
     },
     {
       "name": "objective_c",
@@ -464,6 +476,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "provider",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/provider-6.1.5+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "pub_semver",
       "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/pub_semver-2.2.0",
       "packageUri": "lib/",
@@ -480,12 +498,6 @@
       "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/pubspec_parse-1.5.0",
       "packageUri": "lib/",
       "languageVersion": "3.6"
-    },
-    {
-      "name": "riverpod",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/riverpod-2.6.1",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
     },
     {
       "name": "serial_csv",
@@ -513,31 +525,31 @@
     },
     {
       "name": "slang",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/slang-4.13.0",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/slang-4.14.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "slang_build_runner",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/slang_build_runner-4.13.0",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/slang_build_runner-4.14.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "slang_flutter",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/slang_flutter-4.13.0",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/slang_flutter-4.14.0",
       "packageUri": "lib/",
       "languageVersion": "3.3"
     },
     {
       "name": "source_gen",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/source_gen-4.2.0",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/source_gen-4.2.2",
       "packageUri": "lib/",
-      "languageVersion": "3.7"
+      "languageVersion": "3.9"
     },
     {
       "name": "source_helper",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/source_helper-1.3.10",
+      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/source_helper-1.3.11",
       "packageUri": "lib/",
       "languageVersion": "3.9"
     },
@@ -552,12 +564,6 @@
       "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/stack_trace-1.12.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
-    },
-    {
-      "name": "state_notifier",
-      "rootUri": "file:///C:/Users/guiga/AppData/Local/Pub/Cache/hosted/pub.dev/state_notifier-1.0.0",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
     },
     {
       "name": "stream_channel",
@@ -717,8 +723,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.11.1",
+  "generatorVersion": "3.11.3",
   "flutterRoot": "file:///C:/src/flutter",
-  "flutterVersion": "3.41.4",
+  "flutterVersion": "3.41.5",
   "pubCache": "file:///C:/Users/guiga/AppData/Local/Pub/Cache"
 }

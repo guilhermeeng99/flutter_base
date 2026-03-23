@@ -23,6 +23,7 @@ class LevelCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Opacity(
       opacity: isLocked ? 0.5 : 1.0,
       child: Card(
@@ -40,16 +41,14 @@ class LevelCardWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: isCompleted
-                        ? AppColors.success.withValues(alpha: 0.1)
-                        : AppColors.primary.withValues(alpha: 0.1),
+                        ? colors.success.withValues(alpha: 0.1)
+                        : colors.primary.withValues(alpha: 0.1),
                   ),
                   child: Center(
                     child: Icon(
                       icon,
                       size: 28,
-                      color: isCompleted
-                          ? AppColors.success
-                          : AppColors.primary,
+                      color: isCompleted ? colors.success : colors.primary,
                     ),
                   ),
                 ),
@@ -60,31 +59,31 @@ class LevelCardWidget extends StatelessWidget {
                     children: [
                       Text(
                         title,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
-                          color: AppColors.textPrimary,
+                          color: colors.textPrimary,
                         ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         subtitle,
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 14,
-                          color: AppColors.textSecondary,
+                          color: colors.textSecondary,
                         ),
                       ),
                     ],
                   ),
                 ),
                 if (isCompleted)
-                  const Icon(Icons.check_circle, color: AppColors.success)
+                  Icon(Icons.check_circle, color: colors.success)
                 else if (isLocked)
-                  const Icon(Icons.lock, color: AppColors.disabled)
+                  Icon(Icons.lock, color: colors.disabled)
                 else
-                  const Icon(
+                  Icon(
                     Icons.arrow_forward_ios,
-                    color: AppColors.textSecondary,
+                    color: colors.textSecondary,
                     size: 18,
                   ),
               ],

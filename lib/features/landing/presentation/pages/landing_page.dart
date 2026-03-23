@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_base/app/routes/app_routes.dart';
+import 'package:flutter_base/app/routes/app_router.dart';
 import 'package:flutter_base/app/theme/app_colors.dart';
 import 'package:flutter_base/gen/i18n/strings.g.dart';
 import 'package:go_router/go_router.dart';
@@ -9,6 +9,7 @@ class LandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -16,68 +17,59 @@ class LandingPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // Logo / Icon
               Container(
                 width: 100,
                 height: 100,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   gradient: LinearGradient(
                     colors: [
-                      AppColors.primary,
-                      AppColors.secondary,
+                      colors.primary,
+                      colors.secondary,
                     ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.code,
                   size: 48,
-                  color: AppColors.background,
+                  color: colors.background,
                 ),
               ),
               const SizedBox(height: 32),
-
-              // Title
               Text(
                 context.t.landing.title,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.w800,
-                  color: AppColors.textPrimary,
+                  color: colors.textPrimary,
                   letterSpacing: -0.5,
                 ),
               ),
               const SizedBox(height: 8),
-
-              // Subtitle
               Text(
                 context.t.landing.subtitle,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 18,
-                  color: AppColors.primary,
+                  color: colors.primary,
                   fontWeight: FontWeight.w600,
                 ),
               ),
               const SizedBox(height: 16),
-
-              // Description
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 480),
                 child: Text(
                   context.t.landing.description,
                   textAlign: TextAlign.center,
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontSize: 15,
-                    color: AppColors.textSecondary,
+                    color: colors.textSecondary,
                     height: 1.6,
                   ),
                 ),
               ),
               const SizedBox(height: 40),
-
-              // Feature chips
               Wrap(
                 spacing: 12,
                 runSpacing: 12,
@@ -98,8 +90,6 @@ class LandingPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 48),
-
-              // Start button
               SizedBox(
                 width: double.infinity,
                 height: 56,
@@ -140,26 +130,27 @@ class _FeatureChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: AppColors.surfaceLight,
+        color: colors.surfaceLight,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: AppColors.border,
+          color: colors.border,
         ),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 18, color: AppColors.primary),
+          Icon(icon, size: 18, color: colors.primary),
           const SizedBox(width: 8),
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 13,
               fontWeight: FontWeight.w600,
-              color: AppColors.textPrimary,
+              color: colors.textPrimary,
             ),
           ),
         ],

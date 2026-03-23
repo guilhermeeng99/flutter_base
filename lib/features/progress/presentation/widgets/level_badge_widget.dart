@@ -13,6 +13,7 @@ class LevelBadgeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Container(
       width: size,
       height: size,
@@ -22,13 +23,13 @@ class LevelBadgeWidget extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            AppColors.levelBadge,
-            AppColors.levelBadge.withValues(alpha: 0.7),
+            colors.levelBadge,
+            colors.levelBadge.withValues(alpha: 0.7),
           ],
         ),
         boxShadow: [
           BoxShadow(
-            color: AppColors.levelBadge.withValues(alpha: 0.3),
+            color: colors.levelBadge.withValues(alpha: 0.3),
             blurRadius: 8,
             offset: const Offset(0, 2),
           ),

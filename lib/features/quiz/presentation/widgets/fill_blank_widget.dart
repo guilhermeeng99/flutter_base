@@ -19,6 +19,7 @@ class FillBlankWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -28,10 +29,10 @@ class FillBlankWidget extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             margin: const EdgeInsets.only(bottom: 20),
             decoration: BoxDecoration(
-              color: AppColors.surface,
+              color: colors.surface,
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColors.border,
+                color: colors.border,
                 width: 2,
               ),
             ),
@@ -41,9 +42,7 @@ class FillBlankWidget extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
-                color: selectedIndex != null
-                    ? AppColors.primary
-                    : AppColors.disabled,
+                color: selectedIndex != null ? colors.primary : colors.disabled,
               ),
             ),
           ),
@@ -60,13 +59,13 @@ class FillBlankWidget extends StatelessWidget {
 
               Color chipColor;
               if (isCorrect) {
-                chipColor = AppColors.success;
+                chipColor = colors.success;
               } else if (isWrong) {
-                chipColor = AppColors.error;
+                chipColor = colors.error;
               } else if (isSelected) {
-                chipColor = AppColors.primary;
+                chipColor = colors.primary;
               } else {
-                chipColor = AppColors.textSecondary;
+                chipColor = colors.textSecondary;
               }
 
               return ActionChip(

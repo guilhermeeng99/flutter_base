@@ -10,7 +10,7 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  flutter_riverpod: ^2.6.1
+  flutter_bloc: ^9.1.1
   font_awesome_flutter: ^11.0.0
   freezed_annotation: ^3.0.0
   go_router: ^15.1.2
@@ -42,15 +42,7 @@ melos:
       run: dart run my_portfolio:assets_linux
 
     run_release_deploy:
-      run: >
-        flutter build web --release --base-href /flutter_base/ &&
-        cd build/web &&
-        git init &&
-        git add . &&
-        git commit -m "Update" &&
-        git branch -M gh-pages &&
-        git remote add origin https://github.com/guilhermeeng99/flutter_base.git &&
-        git push -f origin gh-pages
+      run: powershell -ExecutionPolicy Bypass -File deploy_web.ps1
 
 flutter:
   assets:

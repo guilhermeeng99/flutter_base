@@ -64,24 +64,28 @@ class _OptionButton extends StatelessWidget {
   final bool isAnswered;
   final VoidCallback onTap;
 
-  Color get _borderColor {
-    if (isCorrect) return AppColors.success;
-    if (isWrong) return AppColors.error;
-    if (isSelected) return AppColors.primary;
-    return AppColors.border;
-  }
-
-  Color get _backgroundColor {
-    if (isCorrect) return AppColors.success.withValues(alpha: 0.1);
-    if (isWrong) return AppColors.error.withValues(alpha: 0.1);
-    if (isSelected) return AppColors.primary.withValues(alpha: 0.05);
-    return AppColors.surface;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final colors = context.appColors;
+
+    final borderColor = isCorrect
+        ? colors.success
+        : isWrong
+        ? colors.error
+        : isSelected
+        ? colors.primary
+        : colors.border;
+
+    final backgroundColor = isCorrect
+        ? colors.success.withValues(alpha: 0.1)
+        : isWrong
+        ? colors.error.withValues(alpha: 0.1)
+        : isSelected
+        ? colors.primary.withValues(alpha: 0.05)
+        : colors.surface;
+
     return Material(
-      color: _backgroundColor,
+      color: backgroundColor,
       borderRadius: BorderRadius.circular(12),
       child: InkWell(
         onTap: isAnswered ? null : onTap,
@@ -90,7 +94,7 @@ class _OptionButton extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
           decoration: BoxDecoration(
-            border: Border.all(color: _borderColor, width: 2),
+            border: Border.all(color: borderColor, width: 2),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Row(
@@ -101,13 +105,12 @@ class _OptionButton extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                    color: AppColors.textPrimary,
+                    color: colors.textPrimary,
                   ),
                 ),
               ),
-              if (isCorrect)
-                const Icon(Icons.check_circle, color: AppColors.success),
-              if (isWrong) const Icon(Icons.cancel, color: AppColors.error),
+              if (isCorrect) Icon(Icons.check_circle, color: colors.success),
+              if (isWrong) Icon(Icons.cancel, color: colors.error),
             ],
           ),
         ),

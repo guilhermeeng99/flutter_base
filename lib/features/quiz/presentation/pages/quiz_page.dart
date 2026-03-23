@@ -1,29 +1,30 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_base/app/routes/app_routes.dart';
+import 'package:flutter_base/app/routes/app_router.dart';
 import 'package:flutter_base/app/theme/app_colors.dart';
+import 'package:flutter_base/features/progress/presentation/cubit/progress_cubit.dart';
 import 'package:flutter_base/features/quiz/domain/entities/question_type.dart';
 import 'package:flutter_base/features/quiz/domain/entities/quiz_session.dart';
-import 'package:flutter_base/features/quiz/presentation/providers/quiz_notifier.dart';
+import 'package:flutter_base/features/quiz/presentation/cubit/quiz_cubit.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/answer_feedback_widget.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/code_question_widget.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/fill_blank_widget.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/multiple_choice_widget.dart';
 import 'package:flutter_base/features/quiz/presentation/widgets/question_card.dart';
 import 'package:flutter_base/gen/i18n/strings.g.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
-class QuizPage extends ConsumerStatefulWidget {
+class QuizPage extends StatefulWidget {
   const QuizPage({required this.level, super.key});
   final int level;
 
   @override
-  ConsumerState<QuizPage> createState() => _QuizPageState();
+  State<QuizPage> createState() => _QuizPageState();
 }
 
-class _QuizPageState extends ConsumerState<QuizPage> {
+class _QuizPageState extends State<QuizPage> {
   void _closeQuiz(BuildContext context) {
     if (context.canPop()) {
       context.pop();
@@ -35,42 +36,43 @@ class _QuizPageState extends ConsumerState<QuizPage> {
   @override
   void initState() {
     super.initState();
-    unawaited(
-      Future.microtask(
-        () =>
-            ref.read(quizNotifierProvider.notifier).loadQuestions(widget.level),
-      ),
-    );
+    unawaited(context.read<QuizCubit>().loadQuestions(widget.level));
   }
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(quizNotifierProvider);
-    final notifier = ref.read(quizNotifierProvider.notifier);
-
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.close),
-          onPressed: () => _closeQuiz(context),
-        ),
-        title: LinearProgressIndicator(
-          value: state.progress,
-          backgroundColor: AppColors.border,
-          valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),
-          minHeight: 10,
-          borderRadius: BorderRadius.circular(5),
-        ),
-      ),
-      body: _buildBody(context, state, notifier),
+    return BlocConsumer<QuizCubit, QuizState>(
+      listenWhen: (prev, curr) => !prev.isAnswered && curr.isAnswered,
+      listener: (context, state) {
+        final xp = state.answerResult?.xpEarned ?? 0;
+        if (xp > 0) {
+          unawaited(context.read<ProgressCubit>().addXp(xp));
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.close),
+              onPressed: () => _closeQuiz(context),
+            ),
+            title: LinearProgressIndicator(
+              value: state.progress,
+              backgroundColor: context.appColors.border,
+              valueColor: AlwaysStoppedAnimation<Color>(
+                context.appColors.primary,
+              ),
+              minHeight: 10,
+              borderRadius: BorderRadius.circular(5),
+            ),
+          ),
+          body: _buildBody(context, state),
+        );
+      },
     );
   }
 
-  Widget _buildBody(
-    BuildContext context,
-    QuizState state,
-    QuizNotifier notifier,
-  ) {
+  Widget _buildBody(BuildContext context, QuizState state) {
     if (state.isLoading) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -81,13 +83,15 @@ class _QuizPageState extends ConsumerState<QuizPage> {
 
     final session = state.session;
     if (session != null && session.isCompleted) {
-      return _QuizCompleteView(session: session, notifier: notifier);
+      return _QuizCompleteView(session: session);
     }
 
     final question = state.currentQuestion;
     if (question == null) {
       return Center(child: Text(context.t.quiz.error));
     }
+
+    final cubit = context.read<QuizCubit>();
 
     return SingleChildScrollView(
       child: Column(
@@ -99,7 +103,7 @@ class _QuizPageState extends ConsumerState<QuizPage> {
             totalQuestions: state.questions.length,
           ),
           const SizedBox(height: 8),
-          _buildQuestionTypeWidget(state, notifier),
+          _buildQuestionTypeWidget(context, state, cubit),
           const SizedBox(height: 16),
           if (!state.isAnswered)
             Padding(
@@ -108,7 +112,7 @@ class _QuizPageState extends ConsumerState<QuizPage> {
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: state.selectedAnswer != null
-                      ? notifier.confirmAnswer
+                      ? cubit.confirmAnswer
                       : null,
                   child: Text(context.t.quiz.checkAnswer),
                 ),
@@ -117,7 +121,7 @@ class _QuizPageState extends ConsumerState<QuizPage> {
           if (state.isAnswered && state.answerResult != null)
             AnswerFeedbackWidget(
               result: state.answerResult!,
-              onNext: notifier.nextQuestion,
+              onNext: cubit.nextQuestion,
             ),
           const SizedBox(height: 32),
         ],
@@ -125,7 +129,11 @@ class _QuizPageState extends ConsumerState<QuizPage> {
     );
   }
 
-  Widget _buildQuestionTypeWidget(QuizState state, QuizNotifier notifier) {
+  Widget _buildQuestionTypeWidget(
+    BuildContext context,
+    QuizState state,
+    QuizCubit cubit,
+  ) {
     final q = state.currentQuestion!;
     switch (q.type) {
       case QuestionType.fillInTheBlank:
@@ -134,7 +142,7 @@ class _QuizPageState extends ConsumerState<QuizPage> {
           selectedIndex: state.selectedAnswer,
           correctAnswerIndex: state.isAnswered ? q.correctAnswerIndex : null,
           isAnswered: state.isAnswered,
-          onSelected: notifier.selectAnswer,
+          onSelected: cubit.selectAnswer,
         );
       case QuestionType.codeBased:
         return CodeQuestionWidget(
@@ -143,7 +151,7 @@ class _QuizPageState extends ConsumerState<QuizPage> {
           selectedIndex: state.selectedAnswer,
           correctAnswerIndex: state.isAnswered ? q.correctAnswerIndex : null,
           isAnswered: state.isAnswered,
-          onSelected: notifier.selectAnswer,
+          onSelected: cubit.selectAnswer,
         );
       case QuestionType.multipleChoice:
         return MultipleChoiceWidget(
@@ -151,20 +159,16 @@ class _QuizPageState extends ConsumerState<QuizPage> {
           selectedIndex: state.selectedAnswer,
           correctAnswerIndex: state.isAnswered ? q.correctAnswerIndex : null,
           isAnswered: state.isAnswered,
-          onSelected: notifier.selectAnswer,
+          onSelected: cubit.selectAnswer,
         );
     }
   }
 }
 
 class _QuizCompleteView extends StatelessWidget {
-  const _QuizCompleteView({
-    required this.session,
-    required this.notifier,
-  });
+  const _QuizCompleteView({required this.session});
 
   final QuizSession session;
-  final QuizNotifier notifier;
 
   void _finishQuiz(BuildContext context) {
     if (context.canPop()) {
@@ -182,14 +186,14 @@ class _QuizCompleteView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.emoji_events, size: 80, color: AppColors.xpGold),
+            const Icon(Icons.emoji_events, size: 80, color: Color(0xFFFBBF24)),
             const SizedBox(height: 24),
             Text(
               context.t.quiz.levelComplete,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.w800,
-                color: AppColors.textPrimary,
+                color: context.appColors.textPrimary,
               ),
             ),
             const SizedBox(height: 16),
@@ -198,24 +202,24 @@ class _QuizCompleteView extends StatelessWidget {
                 correct: session.correctAnswers,
                 total: session.totalQuestions,
               ),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 20,
-                color: AppColors.textSecondary,
+                color: context.appColors.textSecondary,
               ),
             ),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
               decoration: BoxDecoration(
-                color: AppColors.xpGold.withValues(alpha: 0.2),
+                color: context.appColors.xpGold.withValues(alpha: 0.2),
                 borderRadius: BorderRadius.circular(20),
               ),
               child: Text(
                 context.t.common.xpEarned(count: session.xpEarned),
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w700,
-                  color: AppColors.accentDark,
+                  color: context.appColors.accentDark,
                 ),
               ),
             ),
