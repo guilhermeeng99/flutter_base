@@ -48,4 +48,5 @@ flutter:
   assets:
     - lib/app/assets/i18n/
     - lib/app/assets/images/
+    - lib/features/challenges/data/datasources/items/chat_mockado/presentation/
   uses-material-design: true

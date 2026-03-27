@@ -581,6 +581,14 @@ file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/app/theme/app_colors.
 file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/app/theme/app_text_styles.dart
 file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/app/theme/app_theme.dart
 file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/core/constants/app_constants.dart
+file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/challenges/data/challenge_entry.dart
+file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/challenges/data/datasources/challenges_local_datasource.dart
+file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/challenges/data/datasources/items/chat_mockado/presentation/mock_chat_page.dart
+file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/challenges/domain/entities/challenge.dart
+file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/challenges/presentation/pages/challenge_detail_page.dart
+file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/challenges/presentation/pages/challenge_runner_page.dart
+file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/challenges/presentation/pages/challenges_page.dart
+file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/challenges/presentation/widgets/challenge_card_widget.dart
 file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/home/presentation/pages/home_page.dart
 file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/home/presentation/providers/home_providers.dart
 file:///C:/Users/guiga/Documents/Projetos/flutter_base/lib/features/home/presentation/widgets/daily_challenge_widget.dart

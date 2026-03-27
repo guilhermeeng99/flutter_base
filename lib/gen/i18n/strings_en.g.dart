@@ -45,6 +45,7 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	late final TranslationsProgressEn progress = TranslationsProgressEn._(_root);
 	late final TranslationsLevelsEn levels = TranslationsLevelsEn._(_root);
 	late final TranslationsCommonEn common = TranslationsCommonEn._(_root);
+	late final TranslationsChallengesEn challenges = TranslationsChallengesEn._(_root);
 	late final TranslationsLandingEn landing = TranslationsLandingEn._(_root);
 }
 
@@ -198,6 +199,45 @@ class TranslationsCommonEn {
 	String get pageNotFound => 'Page not found';
 }
 
+// Path: challenges
+class TranslationsChallengesEn {
+	TranslationsChallengesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Challenges'
+	String get title => 'Challenges';
+
+	/// en: 'See code examples and practice!'
+	String get subtitle => 'See code examples and practice!';
+
+	/// en: 'No challenges yet'
+	String get empty => 'No challenges yet';
+
+	/// en: 'Challenge not found'
+	String get notFound => 'Challenge not found';
+
+	/// en: 'Copy code'
+	String get copyCode => 'Copy code';
+
+	/// en: 'Code copied!'
+	String get codeCopied => 'Code copied!';
+
+	/// en: 'Run Challenge'
+	String get runChallenge => 'Run Challenge';
+
+	/// en: 'Search challenges...'
+	String get searchHint => 'Search challenges...';
+
+	/// en: 'Explained Challenges'
+	String get forumTitle => 'Explained Challenges';
+
+	/// en: 'See code examples and practice!'
+	String get forumSubtitle => 'See code examples and practice!';
+}
+
 // Path: landing
 class TranslationsLandingEn {
 	TranslationsLandingEn._(this._root);
@@ -271,6 +311,16 @@ extension on Translations {
 			'common.xpEarned' => ({required Object count}) => '+${count} XP',
 			'common.loading' => 'Loading...',
 			'common.pageNotFound' => 'Page not found',
+			'challenges.title' => 'Challenges',
+			'challenges.subtitle' => 'See code examples and practice!',
+			'challenges.empty' => 'No challenges yet',
+			'challenges.notFound' => 'Challenge not found',
+			'challenges.copyCode' => 'Copy code',
+			'challenges.codeCopied' => 'Code copied!',
+			'challenges.runChallenge' => 'Run Challenge',
+			'challenges.searchHint' => 'Search challenges...',
+			'challenges.forumTitle' => 'Explained Challenges',
+			'challenges.forumSubtitle' => 'See code examples and practice!',
 			'landing.title' => 'FlutterBase',
 			'landing.subtitle' => 'Learn Flutter the fun way',
 			'landing.description' => 'Master Flutter through interactive quizzes, challenges, and hands-on exercises. Level up your skills one question at a time.',

@@ -44,6 +44,18 @@
     "loading": "Loading...",
     "pageNotFound": "Page not found"
   },
+  "challenges": {
+    "title": "Challenges",
+    "subtitle": "See code examples and practice!",
+    "empty": "No challenges yet",
+    "notFound": "Challenge not found",
+    "copyCode": "Copy code",
+    "codeCopied": "Code copied!",
+    "runChallenge": "Run Challenge",
+    "searchHint": "Search challenges...",
+    "forumTitle": "Explained Challenges",
+    "forumSubtitle": "See code examples and practice!"
+  },
   "landing": {
     "title": "FlutterBase",
     "subtitle": "Learn Flutter the fun way",
