@@ -1,9 +1,9 @@
 import 'package:flutter_base/features/challenges/data/challenge_entry.dart';
-import 'package:flutter_base/features/challenges/data/datasources/items/chat_mockado/presentation/mock_chat_page.dart';
+import 'package:flutter_base/features/challenges/data/datasources/items/mock_simple_chat/data/mock_simple_chat_entry.dart';
 import 'package:flutter_base/features/challenges/domain/entities/challenge.dart';
 
 class ChallengesLocalDatasource {
-  static final allChallenges = <ChallengeEntry>[mockChatEntry];
+  static final allChallenges = <ChallengeEntry>[mockSimpleChat];
 
   List<Challenge> getAllChallenges() =>
       allChallenges.map((e) => e.challenge).toList();

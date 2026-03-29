@@ -41,6 +41,9 @@ melos:
     generate_assets_folders:
       run: dart run my_portfolio:assets_linux
 
+    run_challenges:
+      run: flutter run -t lib/main_challenges.dart -d windows
+
     run_release_deploy:
       run: powershell -ExecutionPolicy Bypass -File deploy_web.ps1
 
@@ -48,5 +51,5 @@ flutter:
   assets:
     - lib/app/assets/i18n/
     - lib/app/assets/images/
-    - lib/features/challenges/data/datasources/items/chat_mockado/presentation/
+    - lib/features/challenges/data/datasources/items/mock_simple_chat/presentation/
   uses-material-design: true
