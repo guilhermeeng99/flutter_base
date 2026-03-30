@@ -8,8 +8,14 @@ class MockChatPage extends StatefulWidget {
 }
 
 class _MockChatPageState extends State<MockChatPage> {
-  final List<String> messages = ['Test 01', 'Test 02'];
+  final List<String> messages = ['message 01', 'message 02'];
   final TextEditingController textController = TextEditingController();
+
+  @override
+  void dispose() {
+    textController.dispose();
+    super.dispose();
+  }
 
   void onTapSendMessage(String value) {
     final trimmed = value.trim();
@@ -23,34 +29,34 @@ class _MockChatPageState extends State<MockChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
+      appBar: AppBar(title: const Text('Mock Chat')),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         child: Column(
           children: [
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
                 itemCount: messages.length,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 15,
-                ),
-                itemBuilder: (context, index) {
+                itemBuilder: (_, index) {
                   return Text(messages[index]);
+                },
+                separatorBuilder: (_, index) {
+                  return const SizedBox(width: 10, height: 10);
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextField(controller: textController),
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: textController,
                   ),
-                  InkWell(
-                    onTap: () => onTapSendMessage(textController.text),
-                    child: const Icon(Icons.send),
-                  ),
-                ],
-              ),
+                ),
+                InkWell(
+                  onTap: () => onTapSendMessage(textController.text),
+                  child: const Icon(Icons.send),
+                ),
+              ],
             ),
           ],
         ),

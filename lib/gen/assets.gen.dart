@@ -83,10 +83,58 @@ class $LibFeaturesChallengesDataDatasourcesGen {
 class $LibFeaturesChallengesDataDatasourcesItemsGen {
   const $LibFeaturesChallengesDataDatasourcesItemsGen();
 
+  /// Directory path: lib/features/challenges/data/datasources/items/calculator
+  $LibFeaturesChallengesDataDatasourcesItemsCalculatorGen get calculator =>
+      const $LibFeaturesChallengesDataDatasourcesItemsCalculatorGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/color_picker
+  $LibFeaturesChallengesDataDatasourcesItemsColorPickerGen get colorPicker =>
+      const $LibFeaturesChallengesDataDatasourcesItemsColorPickerGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/countdown_timer
+  $LibFeaturesChallengesDataDatasourcesItemsCountdownTimerGen
+  get countdownTimer =>
+      const $LibFeaturesChallengesDataDatasourcesItemsCountdownTimerGen();
+
   /// Directory path: lib/features/challenges/data/datasources/items/mock_simple_chat
   $LibFeaturesChallengesDataDatasourcesItemsMockSimpleChatGen
   get mockSimpleChat =>
       const $LibFeaturesChallengesDataDatasourcesItemsMockSimpleChatGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/notes_app
+  $LibFeaturesChallengesDataDatasourcesItemsNotesAppGen get notesApp =>
+      const $LibFeaturesChallengesDataDatasourcesItemsNotesAppGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/todo_list
+  $LibFeaturesChallengesDataDatasourcesItemsTodoListGen get todoList =>
+      const $LibFeaturesChallengesDataDatasourcesItemsTodoListGen();
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsCalculatorGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsCalculatorGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/calculator/presentation
+  $LibFeaturesChallengesDataDatasourcesItemsCalculatorPresentationGen
+  get presentation =>
+      const $LibFeaturesChallengesDataDatasourcesItemsCalculatorPresentationGen();
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsColorPickerGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsColorPickerGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/color_picker/presentation
+  $LibFeaturesChallengesDataDatasourcesItemsColorPickerPresentationGen
+  get presentation =>
+      const $LibFeaturesChallengesDataDatasourcesItemsColorPickerPresentationGen();
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsCountdownTimerGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsCountdownTimerGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/countdown_timer/presentation
+  $LibFeaturesChallengesDataDatasourcesItemsCountdownTimerPresentationGen
+  get presentation =>
+      const $LibFeaturesChallengesDataDatasourcesItemsCountdownTimerPresentationGen();
 }
 
 class $LibFeaturesChallengesDataDatasourcesItemsMockSimpleChatGen {
@@ -98,6 +146,57 @@ class $LibFeaturesChallengesDataDatasourcesItemsMockSimpleChatGen {
       const $LibFeaturesChallengesDataDatasourcesItemsMockSimpleChatPresentationGen();
 }
 
+class $LibFeaturesChallengesDataDatasourcesItemsNotesAppGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsNotesAppGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/notes_app/presentation
+  $LibFeaturesChallengesDataDatasourcesItemsNotesAppPresentationGen
+  get presentation =>
+      const $LibFeaturesChallengesDataDatasourcesItemsNotesAppPresentationGen();
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsTodoListGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsTodoListGen();
+
+  /// Directory path: lib/features/challenges/data/datasources/items/todo_list/presentation
+  $LibFeaturesChallengesDataDatasourcesItemsTodoListPresentationGen
+  get presentation =>
+      const $LibFeaturesChallengesDataDatasourcesItemsTodoListPresentationGen();
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsCalculatorPresentationGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsCalculatorPresentationGen();
+
+  /// File path: lib/features/challenges/data/datasources/items/calculator/presentation/calculator_page.dart
+  String get calculatorPage =>
+      'lib/features/challenges/data/datasources/items/calculator/presentation/calculator_page.dart';
+
+  /// List of all assets
+  List<String> get values => [calculatorPage];
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsColorPickerPresentationGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsColorPickerPresentationGen();
+
+  /// File path: lib/features/challenges/data/datasources/items/color_picker/presentation/color_picker_page.dart
+  String get colorPickerPage =>
+      'lib/features/challenges/data/datasources/items/color_picker/presentation/color_picker_page.dart';
+
+  /// List of all assets
+  List<String> get values => [colorPickerPage];
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsCountdownTimerPresentationGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsCountdownTimerPresentationGen();
+
+  /// File path: lib/features/challenges/data/datasources/items/countdown_timer/presentation/countdown_timer_page.dart
+  String get countdownTimerPage =>
+      'lib/features/challenges/data/datasources/items/countdown_timer/presentation/countdown_timer_page.dart';
+
+  /// List of all assets
+  List<String> get values => [countdownTimerPage];
+}
+
 class $LibFeaturesChallengesDataDatasourcesItemsMockSimpleChatPresentationGen {
   const $LibFeaturesChallengesDataDatasourcesItemsMockSimpleChatPresentationGen();
 
@@ -107,6 +206,28 @@ class $LibFeaturesChallengesDataDatasourcesItemsMockSimpleChatPresentationGen {
 
   /// List of all assets
   List<String> get values => [mockSimpleChatPage];
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsNotesAppPresentationGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsNotesAppPresentationGen();
+
+  /// File path: lib/features/challenges/data/datasources/items/notes_app/presentation/notes_app_page.dart
+  String get notesAppPage =>
+      'lib/features/challenges/data/datasources/items/notes_app/presentation/notes_app_page.dart';
+
+  /// List of all assets
+  List<String> get values => [notesAppPage];
+}
+
+class $LibFeaturesChallengesDataDatasourcesItemsTodoListPresentationGen {
+  const $LibFeaturesChallengesDataDatasourcesItemsTodoListPresentationGen();
+
+  /// File path: lib/features/challenges/data/datasources/items/todo_list/presentation/todo_list_page.dart
+  String get todoListPage =>
+      'lib/features/challenges/data/datasources/items/todo_list/presentation/todo_list_page.dart';
+
+  /// List of all assets
+  List<String> get values => [todoListPage];
 }
 
 class Assets {

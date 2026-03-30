@@ -51,5 +51,11 @@ flutter:
   assets:
     - lib/app/assets/i18n/
     - lib/app/assets/images/
+    #! Challenges
     - lib/features/challenges/data/datasources/items/mock_simple_chat/presentation/
+    - lib/features/challenges/data/datasources/items/todo_list/presentation/
+    - lib/features/challenges/data/datasources/items/countdown_timer/presentation/
+    - lib/features/challenges/data/datasources/items/color_picker/presentation/
+    - lib/features/challenges/data/datasources/items/notes_app/presentation/
+    - lib/features/challenges/data/datasources/items/calculator/presentation/
   uses-material-design: true
